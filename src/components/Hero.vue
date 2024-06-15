@@ -1,53 +1,35 @@
 <template>
-  <div class="header-container">
-    <section class="header-carousel">
-      <div class="carousel-wrapper">
-        <button class="carousel-arrow left" @click="prevSlide">&#9664;</button>
-        <div class="carousel">
-          <div 
-            v-for="(image, index) in images" 
-            :key="index" 
-            :class="['carousel-slide', { active: index === currentSlide }]"
-          >
-            <img :src="image" :alt="'Slide ' + (index + 1)" />
-          </div>
-        </div>
-        <button class="carousel-arrow right" @click="nextSlide">&#9654;</button>
-      </div>
-      <div class="carousel-indicators">
-        <div 
-          v-for="(image, index) in images" 
-          :key="index" 
-          :class="['indicator', { active: index === currentSlide }]"
-          @click="goToSlide(index)"
-        >
-          <div class="inner-circle"></div>
-        </div>
-      </div>
-    </section>
+  <div class="header-container"> 
     <section class="header-content">
+      <img src="../assets/logo2.svg" alt="Summit Paint and Construction" class="fadeIn hero-img" />
       <h1 class="title fadeInUp">
-        Summit<br />Paint and Construction
+        <span class="highlight">Peak Quality</span> at a Fair Price
       </h1>
-      <p class="intro-text fadeInUp">Residential and Commercial Painting company in City, State</p>
-      <a class="btn-primary fadeInScale" @click.prevent="navigateToSection('contactSection')">
-        Let’s Talk
-      </a>
+      <p class="intro-text fadeInUp">Summit is a residential and commercial painting company in City, State</p>
+      <div class="actions">
+        <a class="btn-primary fadeInScale" @click.prevent="navigateToSection('contactSection')">
+          Let’s Talk
+        </a>
+        <a class="btn-secondary fadeInScale" @click.prevent="navigateToSection('gallerySection')">
+          View Our Work
+        </a>
+      </div>
+
     </section>
   </div>
 </template>
 
 <script>
+import image1 from '../assets/images/carousel_1.png';
+import image2 from '../assets/images/carousel_2.png';
+import image3 from '../assets/images/carousel_3.png';
+import image4 from '../assets/images/carousel_4.png';
+
 export default {
   name: 'HeaderComponent',
   data() {
     return {
-      images: [
-        '../assets/images/carousel_1.png',
-        '../assets/images/carousel_1.png',
-        '../assets/images/carousel_1.png',
-        '../assets/images/carousel_1.png'
-      ],
+      images: [image1, image2, image3, image4],
       currentSlide: 0
     };
   },
@@ -66,12 +48,35 @@ export default {
     },
     goToSlide(index) {
       this.currentSlide = index;
-    },
+    }
   }
 };
 </script>
 
+
 <style scoped>
+
+@font-face {
+  font-family: 'K2D';
+  src: url('../assets/fonts/K2D-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'K2D';
+  src: url('../assets/fonts/K2D-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'K2D';
+  src: url('../assets/fonts/K2D-Medium.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -116,88 +121,71 @@ export default {
 }
 
 .header-container {
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  padding: 64px;
-  box-sizing: border-box;
+  background: url('../assets/images/carousel_1.png') center center/cover no-repeat;
+  position: relative; /* Ensure positioning context for z-index */
+  z-index: 0; /* Adjust this as necessary */
 }
 
-.header-carousel, .header-content {
-  width: 45%;
+.header-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: -1; /* Ensure it is behind the content */
 }
 
-.header-content{
+.header-content {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-}
-
-.carousel-wrapper {
-  display: flex;
   align-items: center;
+  text-align: center;
+  gap: 48px;
+  width: 60%;
+  position: relative; /* Ensure it is above the background */
+  z-index: 1; /* Ensure it is above the ::before pseudo-element */
 }
 
-.carousel {
+.actions {
   display: flex;
-  overflow: hidden;
-  width: 100%;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: 32px;
+  position: relative; /* Ensure it inherits the z-index context */
+  z-index: 1; /* Make sure it's above any other overlapping elements */
 }
 
-.carousel-slide {
-  min-width: 100%;
-  transition: transform 0.5s ease;
+.btn-secondary, .btn-primary {
+  position: relative; /* Ensure they are positioned within the z-index context */
+  z-index: 1; /* Ensure they are above the background overlay */
 }
 
-.carousel-slide.active {
-  transform: translateX(-100%);
+.hero-img {
+  width: 25%;
+  height: auto;
 }
 
-.carousel-arrow {
-  background-color: #4475F4;
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
+h1 {
+  font-size: 3rem;
+  font-family: 'K2D', sans-serif;
+  font-weight: bold;
+  color: #fff;
 }
 
-.carousel-indicators {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.indicator {
-  width: 16px;
-  height: 16px;
-  border: 1px solid #9c9c9c;
-  border-radius: 50%;
-  margin: 0 5px;
-  position: relative;
-  cursor: pointer;
-}
-
-.indicator.active {
-  border-color: #4475F4;
-}
-
-.indicator.active .inner-circle {
-  width: 10px;
-  height: 10px;
-  background-color: #4475F4;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+p{
+  color: #fff;
 }
 
 @media (max-width: 768px) {
   .header-container {
     flex-direction: column;
+    padding: 32px;
+    box-sizing: border-box;
   }
 
   .header-carousel, .header-content {
@@ -210,6 +198,10 @@ export default {
 
   .header-content .intro-text {
     font-size: 1rem;
+  }
+
+  .actions a{
+    width: 100%;
   }
 }
 </style>

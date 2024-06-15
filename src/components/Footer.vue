@@ -3,8 +3,8 @@
       <div class="company-info">
         <img src="../assets/logo.svg" alt="Logo" class="logo" />
         <div class="company-details">
-          <h4>ClearStack AI</h4>
-          <p>Copyright ©2024 - All Rights Reserved</p>
+          <h4>Summit Paint and Construction</h4>
+          <p>Copyright ©2024</p>
         </div>
       </div>
       <a href="#" class="btn-tertiary" @click.prevent="navigateToSection('navbarSection')">Back To Top</a>
@@ -45,6 +45,10 @@ export default {
     justify-content: center;
   }
 
+  .logo {
+  height: 40px;
+}
+
 .company-info {
   display: flex;
   align-items: center;
@@ -53,13 +57,18 @@ export default {
 
 .company-details {
   display: flex;
-  gap: 4px;
+  gap: 8px;
   flex-direction: column;
   align-items: flex-start;
 }
 
 .company-details h4, p {
   margin: 0px;
+}
+
+.company-details p {
+  font-size: 14px;
+  color: #8f8f8f;
 }
 
 @media (max-width: 600px) {

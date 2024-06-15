@@ -1,12 +1,37 @@
 <template>
   <section class="form-container fadeIn" ref="contactSection">
-    <h2>Let's Create The Future <span class="highlight">Together</span></h2>
-    <p>
-      Got an AI idea, a question, or just curious about what we do? Reach out to
-      ClearStack AI! Our team is here to guide, support, and share in your AI
-      journey. Let's turn your AI dreams into reality together!
-    </p>
+    <div class="section-header">
+        <div class="section-header-small">
+          <h5>Contact</h5>
+          <div class="header-line"></div>
+        </div>
+        <h2>Contact <span class="highlight">Us</span></h2>
+    </div>
     <form class="contact-form">
+      <div class="contact-words">
+      <div class="contact-info">
+        <img src="../assets/icons/location.svg" alt="Location"/>
+        <div>
+          <h4>Location</h4>
+          <p>City, state</p>
+        </div>
+      </div>
+      <div class="contact-info">
+        <img src="../assets/icons/phone.svg" alt="Phone"/>
+        <div>
+          <h4>Phone</h4>
+          <p>(123) 345-5678</p>
+        </div>
+      </div>
+      <div class="contact-info">
+        <img src="../assets/icons/email.svg" alt="Email"/>
+        <div>
+          <h4>Email</h4>
+          <p>Email@email.com</p>
+        </div>
+      </div>
+      </div>
+      <div class="form-content">
       <div class="half-width">
         <input
           type="text"
@@ -42,6 +67,7 @@
         required
       />
       <button type="submit" class="btn-primary full-width">Submit</button>
+      </div>
     </form>
   </section>
 </template>
@@ -89,19 +115,44 @@ export default {
 .form-container {
   background-color: #f5f9ff;
   width: 100%;
-  padding: 60px;
+  padding: 120px 64px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: center;
   position: relative;
-  gap: 32px;
-  text-align: center;
+  gap: 40px;
+  box-sizing: border-box;
 }
 
-.form-container h2,
-.form-container p {
-  z-index: 2;
+.contact-words{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.contact-info p {
+  font-size: 16px;
+}
+
+.contact-info div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-info {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
   width: 60%;
 }
 
@@ -119,12 +170,13 @@ export default {
 
 .contact-form {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 32px;
-  width: 60%;
+  width: 100%;
   background-color: white;
   padding: 32px;
   border-radius: 32px;
+  box-sizing: border-box;
   z-index: 2;
 }
 
@@ -138,14 +190,13 @@ export default {
 
 .input:focus {
   outline: none;
-  border-bottom-color: #0055cc;
+  border-bottom-color: #4173F3;
 }
 
 .btn-primary {
-  background-color: #0075ff;
+  background-color: #4173F3;
   color: #fff;
-  font: 500 16px Segoe UI, sans-serif;
-  border-radius: 66px;
+  border-radius: 8px;
   padding: 12px 32px;
   border: none;
   z-index: 2;
@@ -154,7 +205,7 @@ export default {
 }
 
 .btn-primary:hover {
-  background-color: #0055cc;
+  background-color: #003B80;
 }
 
 .top-right-corner-image {
@@ -175,11 +226,7 @@ export default {
   width: 100%;
 }
 
-@media (max-width: 600px) {
-  .form-container h2,
-  .form-container p {
-    width: 80%;
-  }
+@media (max-width: 800px) {
 
   .half-width {
     flex-direction: column;
@@ -193,16 +240,35 @@ export default {
   .form-container {
     padding: 20px;
   }
+  .contact-words{
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  .contact-info {
+    width: 30%;
+  }
 
-  .contact-form {
-    width: 80%;
+  .form-content {
+    width: 100%;
   }
 }
 
-@media (min-width: 1024px) {
-  .form-container h2,
-  .form-container p {
-    width: 60%;
+@media (max-width: 600px) {
+
+  .contact-words{
+    justify-content: flex-start;
+  }
+
+  .contact-info img {
+    width: 24px;
+  }
+
+  .contact-info {
+    width: 47%;
   }
 }
+
 </style>
